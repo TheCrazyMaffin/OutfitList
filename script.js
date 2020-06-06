@@ -11,7 +11,7 @@ window.onload = function(){
 }
 
 function search(input){
-    var val = input.value || input
+    var val = (input.target ? input.target.value : input.value) || input
     console.log(val)
     var filtered = items.filter(item => JSON.stringify(item).toLowerCase().includes(val.toString().trim().toLowerCase()))
     renderItems(filtered)
@@ -22,7 +22,6 @@ function renderItems(items){
     var detailTemplate = document.querySelector("#item-detail-t")
     var cardTemplate = document.querySelector("#item-card-t")
     items.forEach(item => {
-        console.log(item)
         var cardClone = document.importNode(cardTemplate.content, true)
         cardClone.querySelector(".item-name").innerText = item.name
         var type = ""
@@ -68,7 +67,6 @@ function renderItems(items){
         details.appendChild(detailClone, true);
 
         var addedAt = new Date(item.added * 1000)
-        console.log(item.added)
         cardClone.querySelector(".item-added").innerHTML = `Added ${addedAt.toLocaleDateString()}`
 
         document.querySelector("#card-container").appendChild(cardClone)
