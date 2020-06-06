@@ -1,6 +1,6 @@
 sets = [
     {
         "name": "Arsonist",
-        "image": "https://cdn.pixabay.com/photo/2019/09/07/03/17/bad-guy-4457848_960_720.jpg"
+        "image": "https://cdn.discordapp.com/attachments/543907701500018728/718945077266743326/assets_images_itemsetpromotions_arsonist.png"
     }
 ]
