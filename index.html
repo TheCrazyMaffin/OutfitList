@@ -36,10 +36,10 @@
             type="text/javascript"
         ></script>
         <!--Javascript-->
-        <script src="sets.js" type="text/javasript"></script>
-        <script src="items.js" type="text/javasript"></script>
-        <script src="script.js" type="text/javasript"></script>
-        <template id="item-card">
+        <script src="sets.js"></script>
+        <script src="items.js"></script>
+        <script src="script.js"></script>
+        <template id="item-card-t">
             <div class="card mb-3">
                 <h3 class="card-header item-name"></h3>
                 <div class="card-body">
@@ -47,11 +47,12 @@
                     <h6 class="card-subtitle text-muted item-creator"></h6>
                 </div>
                 <img
+                    class="item-image"
                     style="
                         height: 200px;
                         width: 100%;
                         display: block;
-                        object-fit: cover;
+                        object-fit: contain;
                     "
                     src=""
                     alt="Card image"
@@ -60,7 +61,7 @@
                 <div class="card-footer text-muted item-added"></div>
             </div>
         </template>
-        <template id="item-detail">
+        <template id="item-detail-t">
             <li class="list-group-item"></li>
         </template>
     </head>
@@ -86,19 +87,15 @@
               <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
             </li>-->
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input
-                        class="form-control mr-sm-2"
-                        type="text"
-                        placeholder="Search"
-                    />
+                <span class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search"/>
                     <button
                         class="btn btn-secondary my-2 my-sm-0"
-                        type="submit"
+                        onclick="renderItems(items);document.querySelector('#search').value = ''"
                     >
-                        Search
+                        Clear
                     </button>
-                </form>
+                </span>
             </div>
         </nav>
         <!--CARDS-->
