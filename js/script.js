@@ -44,10 +44,11 @@ function getMaxPages(){
     var url = new URL(window.location.href)
     var qItems = search(items, url.searchParams.has("q") ? url.searchParams.get("q") : "")
     console.log(`${qItems.length} match the query.`)
-    return qItems.length/itemsPerPage -1 //array starts at 0
+    return Math.ceil(qItems.length/itemsPerPage) - 1 //array starts at 0
 }
 
 function setPage(num){
+    console.log("Set page to " + num)
     var url = new URL(window.location.href)
     url.searchParams.set("i", num)
     window.location.href = url.toString()
@@ -64,7 +65,7 @@ function reload(){
     urlParams.has("i") ? page = parseInt(urlParams.get("i")) : page = 0;
     document.querySelector("#currentIndex").innerText = page + 1
     document.querySelector("#search").value = query;
-    page < getMaxPages() ? "" : setPage(getMaxPages())
+    page <= getMaxPages() ? "" : setPage(getMaxPages())
     var tempItems = items
     tempItems = search(tempItems, query)
     tempItems = sortItems(tempItems, sort)
