@@ -1,3 +1,22 @@
+var s = "none"
+
+Array.prototype.contains = function(v) {
+    for (var i = 0; i < this.length; i++) {
+      if (this[i] === v) return true;
+    }
+    return false;
+};
+
+Array.prototype.unique = function() {
+    var arr = [];
+    for (var i = 0; i < this.length; i++) {
+      if (!arr.contains(this[i])) {
+        arr.push(this[i]);
+      }
+    }
+    return arr;
+}
+
 window.onload = function(){
     document.getElementById("search").onchange = search;
     const queryString = window.location.search;
@@ -6,15 +25,44 @@ window.onload = function(){
         search(urlParams.get("q"))
         document.querySelector("#search").value = urlParams.get("q")
     }else{
-        renderItems(items)
+        renderItems(sort(items))
+    }
+}
+
+function sortType(type){
+    s = type
+    renderItems(sort(items))
+}
+
+function sort(items){
+    switch(s){
+        case 'type':
+            var sorted = []
+            var types = items.map(item => item.type).unique()
+            types.forEach(type => {
+                sorted.push(...items.filter(item => item.type == type))
+            });
+            return sorted
+        case 'outfit':
+            var sorted = []
+            var outfits = items.map(item => item.set).unique()
+            outfits.forEach(outfit => {
+                sorted.push(...items.filter(item => item.set == outfit))
+            });
+            return sorted
+        case 'date':
+            return items.sort((a,b) => {return a.added - b.added})
+        default:
+            return items
     }
 }
 
 function search(input){
-    var val = (input.target ? input.target.value : input.value) || input
-    console.log(val)
+    var val = input.value || input
+    typeof val == "object" ? val = input.target.value : ""
+    console.log(`Searching "${val}", sorting mode "${s}"`)
     var filtered = items.filter(item => JSON.stringify(item).toLowerCase().includes(val.toString().trim().toLowerCase()))
-    renderItems(filtered)
+    renderItems(sort(filtered))
 }
 
 function renderItems(items){
