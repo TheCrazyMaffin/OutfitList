@@ -1,4 +1,4 @@
-var s = "none"
+var s = "type"
 
 Array.prototype.contains = function(v) {
     for (var i = 0; i < this.length; i++) {
