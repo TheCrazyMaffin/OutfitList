@@ -2,43 +2,66 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <meta name="theme-color" content="#375a7f">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="Description" content="Werewolf Online Outfit Items. View all items and learn more about them.">
+        <link rel="manifest" href="/manifest.webmanifest">
+        <link rel="apple-touch-icon" href="icons/apple.png">
+        <link rel="shortcut icon" type="image/x-icon" href="icons/favicon.ico">
         <title>WWO | OutfitList</title>
         <!--Theme and Layout-->
-        <link rel="stylesheet" href="grid.css" />
+        <link rel="stylesheet" href="css/grid.css" async/>
 
         <link
             rel="stylesheet"
             href="https://bootswatch.com/4/darkly/bootstrap.min.css"
+            async
         />
         <link
             rel="stylesheet"
             href="https://bootswatch.com/4/darkly/bootstrap.css"
+            async
         />
         <link
             rel="stylesheet"
             href="https://bootswatch.com/4/darkly/_variables.scss"
+            async
         />
         <link
             rel="stylesheet"
             href="https://bootswatch.com/4/darkly/_bootswatch.scss"
+            async
         />
         <script
             src="https://bootswatch.com/_vendor/jquery/dist/jquery.min.js"
             type="text/javascript"
+            async
         ></script>
         <script
             src="https://bootswatch.com/_vendor/popper.js/dist/umd/popper.min.js"
             type="text/javascript"
+            async
         ></script>
         <script
             src="https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.min.js"
             type="text/javascript"
+            async
         ></script>
         <!--Javascript-->
-        <script src="sets.js"></script>
-        <script src="items.js"></script>
-        <script src="script.js"></script>
+        <script src="data/sets.js"async></script>
+        <script src="data/items.js" async></script>
+        <script src="js/array.js" async></script>
+        <script src="js/script.js" async></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168790423-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-168790423-1');
+        </script>
+
         <template id="item-card-t">
             <div class="card mb-3">
                 <h3 class="card-header item-name"></h3>
@@ -86,18 +109,21 @@
                     <li class="nav-item dropdown show">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Sort by</a>
                         <div class="dropdown-menu" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
-                          <a class="dropdown-item" href="#" onclick="sortType('type')">Item type</a>
-                          <a class="dropdown-item" href="#" onclick="sortType('outfit')">Outfit</a>
-                          <a class="dropdown-item" href="#" onclick="sortType('date')">Created</a>
-                          <a class="dropdown-item" href="#" onclick="sortType('none')">Disable sorting</a>
+                          <a class="dropdown-item" href="#" onclick="Events.sortSet('type')">Item type</a>
+                          <a class="dropdown-item" href="#" onclick="Events.sortSet('outfit')">Outfit</a>
+                          <a class="dropdown-item" href="#" onclick="Events.sortSet('date')">Created</a>
+                          <a class="dropdown-item" href="#" onclick="Events.sortSet('none')">Disable sorting</a>
                         </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/github.html">GitHub</a>
                       </li>
                 </ul>
                 <span class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search"/>
                     <button
                         class="btn btn-secondary my-2 my-sm-0"
-                        onclick="renderItems(items);document.querySelector('#search').value = ''"
+                        onclick="Events.clearQuery()"
                     >
                         Clear
                     </button>
@@ -105,6 +131,19 @@
             </div>
         </nav>
         <!--CARDS-->
+        <div style="position:fixed;bottom: 10px;left:20px;z-index: 2;">
+            <ul class="pagination pagination-lg">
+              <li class="page-item">
+                <a class="page-link" onclick="Events.pageBack()" href="#">&laquo;</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#" id="currentIndex">X</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="Events.pageForward()" href="#">&raquo;</a>
+              </li>
+            </ul>
+        </div>
         <div class="grid" style="margin: 10px;" id="card-container"></div>
     </body>
 </html>

@@ -1,0 +1,31 @@
+{
+    "short_name": "Outfit list",
+    "name": "Werewolf Online Outfit List",
+    "description": "All outfit items of WWO with all available information",
+    "icons": [
+      {
+        "src": "/icons/apple.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+          "src": "/icons/512x512.png",
+          "type": "image/png",
+          "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#375a7f",
+    "display": "minimal-ui",
+    "scope": "/",
+    "theme_color": "#375a7f",
+    "shortcuts": [
+      {
+        "name": "Visit us on GitHub",
+        "short_name": "GitHub",
+        "description": "Check out the GitHub repo.",
+        "url": "/github.html",
+        "icons": [{ "src": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", "sizes": "560x560" }]
+      }
+    ]
+  }
