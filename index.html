@@ -48,10 +48,11 @@
             async
         ></script>
         <!--Javascript-->
-        <script src="data/sets.js"async></script>
         <script src="data/items.js" async></script>
+        <script src="js/card.js" async></script>
         <script src="js/array.js" async></script>
         <script src="js/script.js" async></script>
+        <script src="js/events.js" async></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168790423-1"></script>
         <script>
@@ -63,29 +64,17 @@
         </script>
 
         <template id="item-card-t">
-            <div class="card mb-3">
-                <h3 class="card-header item-name"></h3>
+            <div class="card mb-3" style="max-width: 20rem;">
+                <div class="card-header">Header</div>
                 <div class="card-body">
-                    <h5 class="card-title item-type"></h5>
-                    <h6 class="card-subtitle text-muted item-creator"></h6>
+                    <img src="" alt="Item image" style="width: 100%;"><br /><br/>
+                    <span class="card-text line1"></span>
+                    <span class="card-text line2"></span>
+                    <span class="card-text line3"></span>
+                    <span class="card-text line4"></span>
+                    <span class="card-text line5"></span>
                 </div>
-                <img
-                    class="item-image"
-                    style="
-                        height: 200px;
-                        width: 100%;
-                        display: block;
-                        object-fit: contain;
-                    "
-                    src=""
-                    alt="Card image"
-                />
-                <ul class="list-group list-group-flush item-details"></ul>
-                <div class="card-footer text-muted item-added"></div>
             </div>
-        </template>
-        <template id="item-detail-t">
-            <li class="list-group-item"></li>
         </template>
     </head>
     <body>
@@ -107,12 +96,11 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown show">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Sort by</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true" hidden>Sort by</a>
                         <div class="dropdown-menu" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
-                          <a class="dropdown-item" href="#" onclick="Events.sortSet('type')">Item type</a>
-                          <a class="dropdown-item" href="#" onclick="Events.sortSet('outfit')">Outfit</a>
-                          <a class="dropdown-item" href="#" onclick="Events.sortSet('date')">Created</a>
-                          <a class="dropdown-item" href="#" onclick="Events.sortSet('none')">Disable sorting</a>
+                          <a class="dropdown-item" href="#" onclick="Events.sortSet('added')">Date added</a>
+                          <a class="dropdown-item" href="#" onclick="Events.sortSet('itemset')">Item set</a>
+                          <a class="dropdown-item" href="#" onclick="Events.sortSet('rarity')">Rarity</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -120,30 +108,28 @@
                       </li>
                 </ul>
                 <span class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search"/>
+                    <input class="form-control mr-sm-2" onchange="Events.search()" type="text" placeholder="Search" id="search"/>
                     <button
                         class="btn btn-secondary my-2 my-sm-0"
-                        onclick="Events.clearQuery()"
+                        onclick="Events.search('')"
                     >
                         Clear
+                    </button>
+                    <button
+                        class="btn btn-secondary my-2 my-sm-0"
+                        onclick="Events.search()"
+                    >
+                        Search
                     </button>
                 </span>
             </div>
         </nav>
         <!--CARDS-->
-        <div style="position:fixed;bottom: 10px;left:20px;z-index: 2;">
-            <ul class="pagination pagination-lg">
-              <li class="page-item">
-                <a class="page-link" onclick="Events.pageBack()" href="#">&laquo;</a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="#" id="currentIndex">X</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" onclick="Events.pageForward()" href="#">&raquo;</a>
-              </li>
-            </ul>
+        <div class="grid" style="margin: 10px;" id="card-container">
+            
         </div>
-        <div class="grid" style="margin: 10px;" id="card-container"></div>
+        <!--NAV-->
+        <button type="button" id="pgFwd" onclick="Events.pageForward()" class="btn btn-primary btn-lg" style="position: fixed;bottom: 0;right:0;margin: 1px;">&raquo;</button>
+        <button type="button" id="pgBck"onclick="Events.pageBack()" class="btn btn-primary btn-lg" style="position: fixed;bottom: 0;left:0;margin: 1px;">&laquo;</button>
     </body>
 </html>
