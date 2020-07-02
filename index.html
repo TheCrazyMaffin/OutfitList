@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
     <head>
         <meta charset="UTF-8" />
         <meta name="theme-color" content="#375a7f">
@@ -77,7 +77,7 @@
             </div>
         </template>
     </head>
-    <body>
+    <body style="height: 100%;">
         <!--NAVIGATION-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="#">WWO Items</a>
@@ -104,8 +104,11 @@
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="./changelog.html">Changelog</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="https://github.com/TheCrazyMaffin/OutfitList">GitHub</a>
-                      </li>
+                    </li>
                 </ul>
                 <span class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" onchange="Events.search()" type="text" placeholder="Search" id="search"/>
@@ -131,7 +134,7 @@
         <!--NAV-->
         <button type="button" id="pgFwd" onclick="Events.pageForward()" class="btn btn-primary btn-lg" style="position: fixed;bottom: 0;right:0;margin: 1px;">&raquo;</button>
         <button type="button" id="pgBck"onclick="Events.pageBack()" class="btn btn-primary btn-lg" style="position: fixed;bottom: 0;left:0;margin: 1px;">&laquo;</button>
-        <footer>
+        <footer style="bottom: 0px">
             <p id="privacy" style="margin: 10px"><a style="height: 1rem; width: 50px;" href="./privacy.html">Privacy</a></p>
        </footer>
     </body>
