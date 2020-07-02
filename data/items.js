@@ -16901,6 +16901,18 @@ items = [
         rarity: "LEGENDARY",
     },
     {
+        id: "d5e1e4a7-9460-4574-9c1e-5a86823aa572",
+        name: "bp13-dragon-front",
+        type: "FRONT",
+        image:
+            "https://cdn.werewolf-apps.com/avatarItems/bp13-dragon-front.store@2x.png",
+        costGems: -1,
+        costRoses: -1,
+        costCoins: -1,
+        minLevel: -1,
+        rarity: "LEGENDARY",
+    },
+    {
         id: "28b6f9ab-c7c0-465f-8462-9e63072fc8e5",
         name: "cardscollection-gravestone",
         type: "GRAVESTONE",
@@ -17635,6 +17647,18 @@ items = [
         type: "CLOTHES_BODY",
         image:
             "https://cdn.werewolf-apps.com/avatarItems/pig-shirt.store@2x.png",
+        costGems: -1,
+        costRoses: -1,
+        costCoins: -1,
+        minLevel: -1,
+        rarity: "LEGENDARY",
+    },
+    {
+        id: "5ae58cf4-f9d7-42a9-8450-8ee1a61105ca",
+        name: "pride-shirt",
+        type: "CLOTHES_BODY",
+        image:
+            "https://cdn.werewolf-apps.com/avatarItems/pride-shirt.store@2x.png",
         costGems: -1,
         costRoses: -1,
         costCoins: -1,
