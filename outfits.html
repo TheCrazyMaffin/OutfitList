@@ -48,11 +48,7 @@
             async
         ></script>
         <!--Javascript-->
-        <script src="data/items.js" async></script>
-        <script src="js/card.js" async></script>
-        <script src="js/array.js" async></script>
-        <script src="js/script.js" async></script>
-        <script src="js/events.js" async></script>
+        <script src="data/outfits.js" async></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168790423-1"></script>
         <script>
@@ -62,25 +58,29 @@
 
         gtag('config', 'UA-168790423-1');
         </script>
+        <script>
+            function createElementFromHTML(htmlString) {
+                var div = document.createElement('div');
+                div.innerHTML = htmlString.trim();
 
-        <template id="item-card-t">
-            <div class="card mb-3" style="max-width: 20rem;">
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                    <img src="" alt="Item image" style="width: 100%;"><br /><br/>
-                    <span class="card-text line1"></span>
-                    <span class="card-text line2"></span>
-                    <span class="card-text line3"></span>
-                    <span class="card-text line4"></span>
-                    <span class="card-text line5"></span>
-                </div>
-            </div>
-        </template>
+                // Change this to div.childNodes to support multiple top-level nodes
+                return div.firstChild; 
+            }
+
+            window.onload = async () => {
+                let cardString = `<div class="card mb-3" style="width: 100%;"><h3 class="card-header"><center>outfitName</center></h3><img style="height: 100%; width: 100%; display: block; object-fit:contain;" src="https://cdn.werewolf-apps.com/promotions/outfitName.jpg" loading="lazy" alt="Card image"><div class="card-body"><a href="${window.location.origin}/?q=outfitName" class="card-link">All items</a></div></div>`
+
+                outfits.forEach(async outfit => {
+                    var nodes = createElementFromHTML(cardString.replace(/outfitName/g, outfit.name));
+                    document.querySelector("#card-container").append(nodes)
+                });
+            }
+        </script>
     </head>
     <body style="height: 100%;">
         <!--NAVIGATION-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">WWO Items</a>
+            <a class="navbar-brand" href="./">WWO Items</a>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -113,21 +113,6 @@
                         <a class="nav-link" href="https://github.com/TheCrazyMaffin/OutfitList">GitHub</a>
                     </li>
                 </ul>
-                <span class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" onchange="Events.search()" type="text" placeholder="Search" id="search"/>
-                    <button
-                        class="btn btn-secondary my-2 my-sm-0"
-                        onclick="Events.search('')"
-                    >
-                        Clear
-                    </button>
-                    <button
-                        class="btn btn-secondary my-2 my-sm-0"
-                        onclick="Events.search()"
-                    >
-                        Search
-                    </button>
-                </span>
             </div>
         </nav>
         <!--CARDS-->
@@ -135,8 +120,6 @@
             
         </div>
         <!--NAV-->
-        <button type="button" id="pgFwd" onclick="Events.pageForward()" class="btn btn-primary btn-lg" style="position: fixed;bottom: 0;right:0;margin: 1px;">&raquo;</button>
-        <button type="button" id="pgBck"onclick="Events.pageBack()" class="btn btn-primary btn-lg" style="position: fixed;bottom: 0;left:0;margin: 1px;">&laquo;</button>
         <footer style="bottom: 0px">
             <p id="privacy" style="margin: 10px"><a style="height: 1rem; width: 50px;" href="./privacy.html">Privacy</a></p>
        </footer>
