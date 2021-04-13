@@ -7,3 +7,7 @@
 .cover {
     object-fit: cover;
   }
+
+@media (min-width: 991.98px) { .btn {
+    margin: 5px;
+}}
