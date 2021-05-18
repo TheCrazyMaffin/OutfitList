@@ -68,7 +68,7 @@
             }
 
             window.onload = async () => {
-                let cardString = `<div class="card mb-3" style="width: 100%;"><h3 class="card-header"><center>outfitName</center></h3><img style="width: 100%; display: block; object-fit:contain;" src="https://cdn.werewolf-apps.com/promotions/outfitName.jpg" loading="lazy" alt="Card image"><div class="card-body"><a href="./?q=outfitName" class="card-link">All items</a></div></div>`
+                let cardString = `<div class="card mb-3" style="width: 100%;"><h3 class="card-header"><center>outfitName</center></h3><img style="width: 100%; display: block; object-fit:contain;" src="https://cdn.werewolf-apps.com/promotions/outfitName.jpg" loading="lazy" alt="Card image"><div class="card-body"><a href='./?q="itemSet"%3A"outfitName"' class="card-link">All items</a></div></div>`
 
                 outfits.forEach(async outfit => {
                     var nodes = createElementFromHTML(cardString.replace(/outfitName/g, outfit.name));
